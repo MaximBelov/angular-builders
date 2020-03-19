@@ -24,5 +24,22 @@ export function mergeConfigs(
     }
     mergedConfig.plugins = [...conf1ExceptConf2, ...webpackConfig2.plugins];
   }
+
+  if (webpackConfig1.optimization.minimizer && webpackConfig2.optimization.minimizer) {
+    const conf1ExceptConf2 = differenceWith(
+      webpackConfig1.optimization.minimizer,
+      webpackConfig2.optimization.minimizer,
+      (item1, item2) => item1.constructor.name === item2.constructor.name
+    );
+    if (!replacePlugins) {
+      const conf1ByName = keyBy(webpackConfig1.optimization.minimizer, 'constructor.name');
+      webpackConfig2.optimization.minimizer = webpackConfig2.optimization.minimizer.map(p =>
+        conf1ByName[p.constructor.name] ? merge(conf1ByName[p.constructor.name], p) : p
+      );
+    }
+
+    mergedConfig.optimization.minimizer = [...conf1ExceptConf2, ...webpackConfig2.optimization.minimizer];
+  }
+
   return mergedConfig;
 }

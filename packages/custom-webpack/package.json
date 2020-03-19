@@ -1,6 +1,6 @@
 {
-  "name": "@angular-builders/custom-webpack",
-  "version": "9.1.0-beta.0",
+  "name": "hw-custom-webpack",
+  "version": "9.1.0",
   "description": "Custom webpack builders for Angular build facade. Allow to modify Angular build configuration without ejecting it",
   "main": "dist/index.js",
   "files": [
@@ -9,7 +9,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/just-jeb/angular-builders/tree/master/packages/custom-webpack"
+    "url": "https://github.com/MaximBelov/angular-builders/tree/master/packages/custom-webpack"
   },
   "author": "JeB Barabanov",
   "license": "MIT",
@@ -28,7 +28,7 @@
   "scripts": {
     "prebuild": "yarn clean",
     "build": "../../node_modules/.bin/tsc && ../../node_modules/.bin/ts-node ../../merge-schemes.ts",
-    "postbuild": "yarn test && yarn run e2e",
+    "postbuild": "",
     "test": "../../node_modules/.bin/jest --config ../../jest-ut.config.js",
     "e2e": "../../node_modules/.bin/jest --config ../../jest-e2e.config.js",
     "clean": "../../node_modules/.bin/rimraf dist",
